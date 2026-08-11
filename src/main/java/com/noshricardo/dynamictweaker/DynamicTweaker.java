@@ -1,7 +1,12 @@
 package com.noshricardo.dynamictweaker;
 
+import com.noshricardo.dynamictweaker.network.ClientPacketHandler;
+import com.noshricardo.dynamictweaker.network.EditorPayload;
 import com.noshricardo.dynamictweaker.network.RecipePayload;
 import com.noshricardo.dynamictweaker.network.ServerPacketHandler;
+import com.noshricardo.dynamictweaker.util.RecipeIndexHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
@@ -49,6 +54,7 @@ public class DynamicTweaker {
 
         modEventBus.addListener(this::registerPackets);
 
+        LayoutRegistry.registerDefaults();
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (DynamicTweaker) to respond directly to events.
@@ -66,6 +72,12 @@ public class DynamicTweaker {
                 RecipePayload.TYPE,
                 RecipePayload.CODEC,
                 ServerPacketHandler::HandleRecipe
+        );
+
+        registrar.playToClient(
+                EditorPayload.TYPE,
+                EditorPayload.CODEC,
+                ClientPacketHandler::handleEditor
         );
 
 

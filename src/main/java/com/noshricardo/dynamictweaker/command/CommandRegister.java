@@ -7,11 +7,12 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 @EventBusSubscriber(modid = DynamicTweaker.MODID)
-public class Commands {
+public class CommandRegister {
 
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event){
         TestRecipeCommand.register(event.getDispatcher());
+        RecipeEditorCommand.register(event.getDispatcher());
     }
 
 
