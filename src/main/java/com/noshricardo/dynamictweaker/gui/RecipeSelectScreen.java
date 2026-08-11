@@ -120,10 +120,19 @@ public class RecipeSelectScreen extends Screen {
                 // If there's multiple recipes, you can open a sub-selector or grab index 0 / let them cycle
                 RecipeHolder<?> chosenRecipe = selectedEntry.getValue().get(0);
 
+                UiLayout layout = new UiLayout(
+                        chosenRecipe.value().getType().toString().contains("crafting") ?
+                                net.minecraft.resources.ResourceLocation.withDefaultNamespace("crafting") :
+                                chosenRecipe.id(),
+                        "Recipe Editor",
+                        chosenRecipe.value().getIngredients().size(),
+                        3, // columns
+                        false,
+                        List.of()
+                );
 
+                Minecraft.getInstance().setScreen(new RecipeEditorScreen(layout, chosenRecipe));
 
-                // Transition to your editor screen passing the layout config and chosen recipe
-                Minecraft.getInstance().setScreen(new RecipeEditorScreen(LayoutRegistry.get(chosenRecipe.id())));
                 return true;
             }
         }

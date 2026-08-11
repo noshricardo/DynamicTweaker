@@ -1,9 +1,6 @@
 package com.noshricardo.dynamictweaker;
 
-import com.noshricardo.dynamictweaker.network.ClientPacketHandler;
-import com.noshricardo.dynamictweaker.network.EditorPayload;
-import com.noshricardo.dynamictweaker.network.RecipePayload;
-import com.noshricardo.dynamictweaker.network.ServerPacketHandler;
+import com.noshricardo.dynamictweaker.network.*;
 import com.noshricardo.dynamictweaker.util.RecipeIndexHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
@@ -72,6 +69,12 @@ public class DynamicTweaker {
                 RecipePayload.TYPE,
                 RecipePayload.CODEC,
                 ServerPacketHandler::HandleRecipe
+        );
+
+        registrar.playToServer(
+                RemoveRecipePayload.TYPE,
+                RemoveRecipePayload.CODEC,
+                ServerPacketHandler::HandleRemoveRecipe
         );
 
         registrar.playToClient(

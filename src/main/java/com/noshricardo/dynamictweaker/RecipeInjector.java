@@ -53,16 +53,30 @@ public class RecipeInjector {
 
             recipeManager.replaceRecipes(workingRecipes);
 
-            ClientboundUpdateRecipesPacket syncPacket = new ClientboundUpdateRecipesPacket(recipeManager.getRecipes());
-            for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-                player.connection.send(syncPacket);
-            }
+            syncRecipesToAllPlayers(server, recipeManager);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return false;
+    }
+
+    public static void removeRecipe(MinecraftServer server, ResourceLocation recipeId) {
+        RecipeManager recipeManager = server.getRecipeManager();
+
+        try {
+            List<RecipeHolder<?>> workingRecipes = new ArrayList<>(recipeManager.getRecipes());
+
+            workingRecipes.removeIf(holder -> holder.id().equals(recipeId));
+
+            recipeManager.replaceRecipes(workingRecipes);
+
+            syncRecipesToAllPlayers(server, recipeManager);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void syncRecipesToAllPlayers(MinecraftServer server, RecipeManager recipeManager){
