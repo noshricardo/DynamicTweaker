@@ -1,6 +1,5 @@
 package com.noshricardo.dynamictweaker;
 
-import com.noshricardo.dynamictweaker.util.RecipeIndexHelper;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;

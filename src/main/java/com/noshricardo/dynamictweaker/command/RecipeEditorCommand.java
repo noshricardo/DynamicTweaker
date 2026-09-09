@@ -2,7 +2,6 @@ package com.noshricardo.dynamictweaker.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.noshricardo.dynamictweaker.network.EditorPayload;
-import com.noshricardo.dynamictweaker.network.RecipePayload;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.server.level.ServerPlayer;

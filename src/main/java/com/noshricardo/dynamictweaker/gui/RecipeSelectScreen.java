@@ -1,11 +1,10 @@
 package com.noshricardo.dynamictweaker.gui;
 
-import com.noshricardo.dynamictweaker.LayoutRegistry;
 import com.noshricardo.dynamictweaker.util.RecipeIndexHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 
 
 public class RecipeSelectScreen extends Screen {
