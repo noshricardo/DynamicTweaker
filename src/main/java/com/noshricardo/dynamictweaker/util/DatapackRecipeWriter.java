@@ -165,19 +165,12 @@ public class DatapackRecipeWriter {
             Files.createDirectories(recipeJsonPath.getParent());
 
             JsonObject nullifiedRecipe = new JsonObject();
-            nullifiedRecipe.addProperty("type", "minecraft:crafting_shapeless");
-            nullifiedRecipe.addProperty("category", "misc");
+            JsonArray conditionsArray = new JsonArray();
+            JsonObject conditionsObject = new JsonObject();
 
-            com.google.gson.JsonArray ingredients = new com.google.gson.JsonArray();
-            JsonObject barrierIngredient = new JsonObject();
-            barrierIngredient.addProperty("item", "minecraft:barrier");
-            ingredients.add(barrierIngredient);
-            nullifiedRecipe.add("ingredients", ingredients);
-
-            JsonObject resultObj = new JsonObject();
-            resultObj.addProperty("id", "minecraft:barrier");
-            resultObj.addProperty("count", 0);
-            nullifiedRecipe.add("result", resultObj);
+            conditionsObject.addProperty("type", "neoforge:false");
+            conditionsArray.add(conditionsObject);
+            nullifiedRecipe.add("neoforge:conditions", conditionsArray);
 
             try (FileWriter writer = new FileWriter(recipeJsonPath.toFile())) {
                 GSON.toJson(nullifiedRecipe, writer);
