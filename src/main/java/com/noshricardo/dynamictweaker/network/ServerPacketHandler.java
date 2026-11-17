@@ -22,7 +22,7 @@ public class ServerPacketHandler {
 
             RecipeInjector.injectRecipe(server, recipeId, recipeHolder);
 
-            DatapackRecipeWriter.saveRecipeToDatapack(server, recipeHolder.id(), recipeHolder.value());
+            DatapackRecipeWriter.saveRecipeToDatapack(server, recipeHolder);
 
             for (ServerPlayer p : server.getPlayerList().getPlayers()) {
                 p.getRecipeBook().sendInitialRecipeBook(p);

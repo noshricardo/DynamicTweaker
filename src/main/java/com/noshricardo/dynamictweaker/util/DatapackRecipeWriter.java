@@ -10,10 +10,7 @@ import net.minecraft.resources.RegistryOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.item.crafting.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +24,9 @@ public class DatapackRecipeWriter {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-    public static void saveRecipeToDatapack(MinecraftServer server, ResourceLocation recipeId, Recipe<?> recipe) {
+    public static void saveRecipeToDatapack(MinecraftServer server, RecipeHolder<?> recipeHolder) {
+        ResourceLocation recipeId = recipeHolder.id();
+        Recipe<?> recipe = recipeHolder.value();
         try {
             Path worldDir = server.getWorldPath(net.minecraft.world.level.storage.LevelResource.ROOT);
             Path datapackDir = worldDir.resolve("datapacks").resolve("dynamic_tweaker_generated");
